@@ -1,25 +1,45 @@
-let step = 0;
+let clues = {
+    sun: false,
+    earth: false,
+    distance: false
+};
 
-function investigate() {
+function getClue(type) {
 
-    const message = document.getElementById("message");
-
-    step++;
-
-    if (step === 1) {
-        message.innerText = "CLUE FOUND: The Sun has mass.";
+    if (type === "sun" && !clues.sun) {
+        clues.sun = true;
+        document.getElementById("sun").innerHTML = "☑ Sun";
     }
 
-    else if (step === 2) {
-        message.innerText = "CLUE FOUND: The Earth has mass.";
+    if (type === "earth" && !clues.earth) {
+        clues.earth = true;
+        document.getElementById("earth").innerHTML = "☑ Earth";
     }
 
-    else if (step === 3) {
-        message.innerText = "CLUE FOUND: There is no physical contact between them.";
+    if (type === "distance" && !clues.distance) {
+        clues.distance = true;
+        document.getElementById("distance").innerHTML = "☑ Distance";
     }
 
-    else if (step === 4) {
-        message.innerText = "QUESTION: How do the Sun and Earth interact?";
+    updateCase();
+}
+
+function updateCase() {
+
+    const caseBox = document.getElementById("case");
+
+    if (clues.sun && clues.earth && clues.distance) {
+        caseBox.innerHTML = `
+            <h3>CASE SUMMARY</h3>
+            ✓ The Sun has mass<br>
+            ✓ The Earth has mass<br>
+            ✓ No physical contact exists<br><br>
+            <b>QUESTION:</b><br>
+            How can one body influence another through empty space?
+        `;
     }
 
+    else {
+        caseBox.innerHTML = "Collect all clues...";
+    }
 }
