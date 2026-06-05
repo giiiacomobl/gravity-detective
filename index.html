@@ -2,62 +2,74 @@
 <html>
 <head>
     <title>The Gravity Detective</title>
-
-    <style>
-        body {
-            background: #0d1117;
-            color: white;
-            font-family: Arial;
-            text-align: center;
-        }
-
-        .box {
-            border: 1px solid #30363d;
-            padding: 20px;
-            margin: 20px auto;
-            width: 300px;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        .box:hover {
-            background: #161b22;
-        }
-
-        .checked {
-            color: #00ff99;
-        }
-
-        #case {
-            margin-top: 30px;
-            padding: 15px;
-            border-top: 1px solid #30363d;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <h1>CASE #001</h1>
-    <h2>THE INVISIBLE FORCE</h2>
+<div class="title">THE INVISIBLE FORCE</div>
 
-    <div class="box" onclick="getClue('sun')" id="sun">
-        ☐ Sun
+<div id="game">
+
+    <div id="intro">
+        <p class="text">
+            Year: 1687<br><br>
+
+            Isaac Newton has discovered a law capable of describing the motion of the planets.<br><br>
+
+            The equations work.<br>
+            The predictions are accurate.<br><br>
+
+            But a mystery remains unsolved...
+        </p>
+
+        <button onclick="startGame()">Start Investigation</button>
     </div>
 
-    <div class="box" onclick="getClue('earth')" id="earth">
-        ☐ Earth
+    <div id="scene" class="hidden">
+
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Color-blind_test_optical_illusion.png" class="image">
+
+        <p class="text">
+            Observe the scene.<br><br>
+
+            The Earth appears to be influenced by the Sun.<br><br>
+
+            How is this possible?
+        </p>
+
+        <button onclick="showClues()">Investigate</button>
     </div>
 
-    <div class="box" onclick="getClue('distance')" id="distance">
-        ☐ Distance
+    <div id="clues" class="hidden">
+
+        <div onclick="clue(1)" class="box" id="c1">☐ Sun</div>
+        <div onclick="clue(2)" class="box" id="c2">☐ Earth</div>
+        <div onclick="clue(3)" class="box" id="c3">☐ Distance</div>
+
+        <div id="clueText"></div>
     </div>
 
-    <div id="case">
-        No clues collected yet.
+    <div id="question" class="hidden">
+
+        <p class="text">
+            Based on the evidence, how do the Sun and Earth interact?
+        </p>
+
+        <button onclick="wrong()">They are touching each other.</button>
+        <button onclick="right()">An invisible gravitational influence exists.</button>
+
+        <div id="answer"></div>
+
+        <button id="continueBtn" class="hidden" onclick="next()">
+            Continue
+        </button>
+
     </div>
 
-    <script src="script.js"></script>
+</div>
+
+<script src="script.js"></script>
 
 </body>
 </html>
