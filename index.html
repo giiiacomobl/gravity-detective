@@ -2,23 +2,60 @@
 <html>
 <head>
     <title>The Gravity Detective</title>
+
+    <style>
+        body {
+            background: #0d1117;
+            color: white;
+            font-family: Arial;
+            text-align: center;
+        }
+
+        .box {
+            border: 1px solid #30363d;
+            padding: 20px;
+            margin: 20px auto;
+            width: 300px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .box:hover {
+            background: #161b22;
+        }
+
+        .checked {
+            color: #00ff99;
+        }
+
+        #case {
+            margin-top: 30px;
+            padding: 15px;
+            border-top: 1px solid #30363d;
+        }
+    </style>
 </head>
+
 <body>
 
     <h1>CASE #001</h1>
     <h2>THE INVISIBLE FORCE</h2>
 
-    <p>
-        Year: 1687
-    </p>
+    <div class="box" onclick="getClue('sun')" id="sun">
+        ☐ Sun
+    </div>
 
-    <p id="message">
-        Isaac Newton has discovered a law capable of describing the motion of the planets.
-    </p>
+    <div class="box" onclick="getClue('earth')" id="earth">
+        ☐ Earth
+    </div>
 
-    <button onclick="investigate()">
-        Start Investigation
-    </button>    
+    <div class="box" onclick="getClue('distance')" id="distance">
+        ☐ Distance
+    </div>
+
+    <div id="case">
+        No clues collected yet.
+    </div>
 
     <script src="script.js"></script>
 
