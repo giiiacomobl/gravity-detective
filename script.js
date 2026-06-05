@@ -41,7 +41,7 @@ function clue(n) {
         setTimeout(() => {
             document.getElementById("clues").classList.add("hidden");
             document.getElementById("question").classList.remove("hidden");
-        }, 1000);
+        }, 5000);
     }
 }
 
