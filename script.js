@@ -1,45 +1,57 @@
-let clues = {
-    sun: false,
-    earth: false,
-    distance: false
-};
+let cluesFound = 0;
+let correct = false;
 
-function getClue(type) {
-
-    if (type === "sun" && !clues.sun) {
-        clues.sun = true;
-        document.getElementById("sun").innerHTML = "☑ Sun";
-    }
-
-    if (type === "earth" && !clues.earth) {
-        clues.earth = true;
-        document.getElementById("earth").innerHTML = "☑ Earth";
-    }
-
-    if (type === "distance" && !clues.distance) {
-        clues.distance = true;
-        document.getElementById("distance").innerHTML = "☑ Distance";
-    }
-
-    updateCase();
+function startGame() {
+    document.getElementById("intro").classList.add("hidden");
+    document.getElementById("scene").classList.remove("hidden");
 }
 
-function updateCase() {
+function showClues() {
+    document.getElementById("scene").classList.add("hidden");
+    document.getElementById("clues").classList.remove("hidden");
+}
 
-    const caseBox = document.getElementById("case");
+function clue(n) {
 
-    if (clues.sun && clues.earth && clues.distance) {
-        caseBox.innerHTML = `
-            <h3>CASE SUMMARY</h3>
-            ✓ The Sun has mass<br>
-            ✓ The Earth has mass<br>
-            ✓ No physical contact exists<br><br>
-            <b>QUESTION:</b><br>
-            How can one body influence another through empty space?
-        `;
+    if (n === 1) {
+        document.getElementById("c1").innerHTML = "☑ Sun";
+        document.getElementById("clueText").innerHTML = "CLUE FOUND<br><br>The Sun has mass.";
     }
 
-    else {
-        caseBox.innerHTML = "Collect all clues...";
+    if (n === 2) {
+        document.getElementById("c2").innerHTML = "☑ Earth";
+        document.getElementById("clueText").innerHTML = "CLUE FOUND<br><br>The Earth has mass.";
     }
+
+    if (n === 3) {
+        document.getElementById("c3").innerHTML = "☑ Distance";
+        document.getElementById("clueText").innerHTML = "CLUE FOUND<br><br>There is no physical contact between them.";
+    }
+
+    cluesFound++;
+
+    if (cluesFound >= 3) {
+        setTimeout(() => {
+            document.getElementById("clues").classList.add("hidden");
+            document.getElementById("question").classList.remove("hidden");
+        }, 1000);
+    }
+}
+
+function wrong() {
+    document.getElementById("answer").innerHTML =
+        "INCORRECT<br><br>The Sun and Earth are separated by empty space.";
+}
+
+function right() {
+    correct = true;
+
+    document.getElementById("answer").innerHTML =
+        "CORRECT<br><br>A gravitational influence seems to exist.<br><br>But a deeper question remains...";
+
+    document.getElementById("continueBtn").classList.remove("hidden");
+}
+
+function next() {
+    alert("Next chapter: The Birth of the Field");
 }
