@@ -1,5 +1,8 @@
 let cluesFound = 0;
 let correct = false;
+let sun = false;
+let earth = false;
+let distance = false;
 
 function startGame() {
     document.getElementById("intro").classList.add("hidden");
@@ -13,22 +16,26 @@ function showClues() {
 
 function clue(n) {
 
-    if (n === 1) {
+    if (n === 1 && !sun) {
+        sun = true;
+        cluesFound++;
         document.getElementById("c1").innerHTML = "☑ Sun";
         document.getElementById("clueText").innerHTML = "CLUE FOUND<br><br>The Sun has mass.";
     }
 
-    if (n === 2) {
+    if (n === 2 && !earth) {
+        earth = true;
+        cluesFound++;
         document.getElementById("c2").innerHTML = "☑ Earth";
         document.getElementById("clueText").innerHTML = "CLUE FOUND<br><br>The Earth has mass.";
     }
 
-    if (n === 3) {
+    if (n === 3 && !distance) {
+        distance = true;
+        cluesFound++;
         document.getElementById("c3").innerHTML = "☑ Distance";
         document.getElementById("clueText").innerHTML = "CLUE FOUND<br><br>There is no physical contact between them.";
     }
-
-    cluesFound++;
 
     if (cluesFound >= 3) {
         setTimeout(() => {
